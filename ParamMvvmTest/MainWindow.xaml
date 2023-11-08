@@ -1,0 +1,95 @@
+﻿<Window
+    x:Class="ParamMvvmTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ParamMvvmTest"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:ParamMvvmTest.View"
+    xmlns:vm="clr-namespace:ParamMvvmTest.ViewModel"
+    Title="MainWindow"
+    Width="450"
+    Height="450"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--<Grid.Resources>
+            <DataTemplate DataType="{x:Type vm:InputViewModel}">
+                <v:InputView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ListViewModel}">
+                <v:ListView />
+            </DataTemplate>
+        </Grid.Resources>-->
+
+        <v:InputView
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="10"
+            DataContext="{Binding InputVM}" />
+        <v:ListView
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="10"
+            DataContext="{Binding ListVM}" />
+
+
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Grid.IsSharedSizeScope="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" SharedSizeGroup="FirstColumn" />
+                <ColumnDefinition Width="auto" SharedSizeGroup="SecondColumn" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Text="MainWindow表示用" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="ID" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                MinWidth="50"
+                Background="LemonChiffon"
+                Text="{Binding PersonA.Id}" />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Name" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Background="LemonChiffon"
+                Text="{Binding PersonA.Name}" />
+        </Grid>
+
+
+    </Grid>
+</Window>
